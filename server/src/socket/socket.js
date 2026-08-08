@@ -9,7 +9,10 @@ const activeGroups = new Map();
 const initSocket = (server) => {
   io = new Server(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5173",
+        "https://chat-application-fe-and-be.vercel.app",
+      ],
       credentials: true,
     },
   });
