@@ -30,7 +30,10 @@ app.use(helmet());
 app.use(limiter);
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://chat-application-fe-and-7nqmvj1wl.vercel.app/",
+    ],
     credentials: true,
   }),
 );
