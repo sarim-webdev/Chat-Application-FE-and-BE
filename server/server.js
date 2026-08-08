@@ -15,6 +15,4 @@ initSocket(server);
 
 connectDb();
 
-server.listen(PORT, () => {
-  console.log(`Server is listening on ${PORT}`);
-});
+export default server;
