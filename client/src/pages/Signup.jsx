@@ -37,7 +37,19 @@ function Signup() {
 
       navigate("/login");
     } catch (error) {
-      alert(error.response?.data?.message || "Signup Failed");
+      console.log("========== SIGNUP ERROR ==========");
+      console.log("Error:", error);
+      console.log("Message:", error.message);
+      console.log("Response:", error.response);
+      console.log("Status:", error.response?.status);
+      console.log("Data:", error.response?.data);
+      console.log("==================================");
+
+      alert(
+        error.response?.data?.message ||
+        error.message ||
+        "Signup Failed"
+      );
     }
   };
 
