@@ -4,6 +4,8 @@ import { cloudinary } from "../config/cloudinary.js";
 import { User } from "../models/userSchema.js";
 import { successResponse } from "../reponseHandler/successResponse.js";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const signup = async (req, res, next) => {
   try {
     const { userName, email, password } = req.body;
@@ -60,8 +62,8 @@ const login = async (req, res, next) => {
           );
           res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            secure: isProduction,
+            sameSite: isProduction ? "none" : "lax",
           });
           successResponse(
             res,
@@ -91,8 +93,8 @@ const logout = async (req, res, next) => {
 
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
     });
 
     successResponse(res, 200, true, "User Logged Out Successfully!");
